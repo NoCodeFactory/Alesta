@@ -1,9 +1,9 @@
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script> 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<script src="https://cdn.finsweet.com/files/cmslibrary-v1.8.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize&key=AIzaSyDmS2jKAfcCx0sKapBe4jOuft7BjqYqKco" async defer></script>
-<script>
+// <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+// <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script> 
+// <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+// <script src="https://cdn.finsweet.com/files/cmslibrary-v1.8.js"></script>
+// <script src="https://maps.googleapis.com/maps/api/js?sensor=false&callback=initialize&key=AIzaSyDmS2jKAfcCx0sKapBe4jOuft7BjqYqKco" async defer></script>
+// <script>
   var filterByTextElements = document.querySelectorAll('.filter-by-destination');
   for (element of filterByTextElements) {
       var elementText = element.innerText;
@@ -343,4 +343,4 @@ document.getElementById("dates").value = date_decoded;
  $(".close-fltr").click(function(){
     $(".drop-down-filter").removeClass("w--open")
 })
-</script>
+//</script>
