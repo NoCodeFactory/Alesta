@@ -10,11 +10,33 @@
       element.parentElement.setAttribute('filter-by', elementText);
    }
    
-filterOn = false
 var map, mapElem, markerImg, infoWindow, marker
-var markers = [], infoWindows = [], arrayTransition = []
+var markers = [], infoWindows = []
 var mapOptions = {
   mapTypeId: 'roadmap',
+}
+
+function initialize () {
+  markerImg = {
+    url:'https://uploads-ssl.webflow.com/5fe9ffe033bab99a19322566/6119672b75eb54a2775810fc_607d4ef7b04e030b63d70b28_Group%201333%201.svg',
+    size: new google.maps.Size(60, 70),
+    anchor: new google.maps.Point(10, 15),
+  }
+
+  mapElem = document.getElementById('map_canvas')
+  map = new google.maps.Map(mapElem, mapOptions)
+  map.setTilt(45)
+
+    for(i = 0; i < cars.length; i++) {
+      var car = cars[i]
+      var infoWindow = new google.maps.InfoWindow();
+      infoWindow.setContent(
+      '<a class="vertical no-text-decoration" href="'+car.url+'"><div class="photo-map-marker" style="background:url('+car.photo+') center/cover no-repeat"></div><div class="vertical"><h6 class="main-header price small-margin-bottom">'+car.pricehr+'€'+'</h6></div></a>'
+      )
+      infoWindows.push(infoWindow)
+      createMarker(car.lat, car.lng, i)
+    }
+  fitToMarkers()
 }
 
 function createMarker(x, y, i) {
@@ -34,40 +56,6 @@ function createMarker(x, y, i) {
       infoWindow.open(map, marker);
     }
   })(marker, i))
-}
-function initialize () {
-  markerImg = {
-    url:'https://uploads-ssl.webflow.com/5fe9ffe033bab99a19322566/6119672b75eb54a2775810fc_607d4ef7b04e030b63d70b28_Group%201333%201.svg',
-    size: new google.maps.Size(60, 70),
-    anchor: new google.maps.Point(10, 15),
-  }
-
-  mapElem = document.getElementById('map_canvas')
-  map = new google.maps.Map(mapElem, mapOptions)
-  map.setTilt(45)
-
-  if(filterOn == false) {
-    for(i = 0; i < cars.length; i++) {
-      var car = cars[i]
-      var infoWindow = new google.maps.InfoWindow();
-      infoWindow.setContent(
-      '<a class="vertical no-text-decoration" href="'+car.url+'"><div class="photo-map-marker" style="background:url('+car.photo+') center/cover no-repeat"></div><div class="vertical"><h6 class="main-header price small-margin-bottom">'+car.pricehr+'€'+'</h6></div></a>'
-      )
-      infoWindows.push(infoWindow)
-      createMarker(car.lat, car.lng, i)
-    }
-  } else {
-    for(i = 0; i < arrayTransition.length; i++) {
-      var carB = arrayTransition[i]
-      var infoWindow = new google.maps.InfoWindow();
-      infoWindow.setContent(
-      '<a class="vertical no-text-decoration" href="'+carB.url+'"><div class="photo-map-marker" style="background:url('+carB.photo+') center/cover no-repeat"></div><div class="vertical"><h6 class="main-header price small-margin-bottom">'+carB.pricehr+'€'+'</h6></div></a>'
-      )
-      infoWindows.push(infoWindow)
-      createMarker(carB.lat, carB.lng, i)
-    }
-  }
-  fitToMarkers()
 }
 
 function mapResize() {
@@ -89,21 +77,6 @@ Webflow.push(function() {
   $(window).resize(function() {
     if($(window).width() < 768) return
     if(typeof mapResize === 'function') mapResize()
-  })
-})
-
-let allSortBtn = document.querySelectorAll('.sort-btn')
-let cardsShown = document.querySelector('.cards-grid-container')
-allSortBtn.forEach(element => {
-  element.addEventListener('click', () => {
-    cars = []
-    filterOn = !filterOn
-    Object.values(cardsShown.children).forEach(element => {
-        if(element.style.display != 'none') {
-            cars.push(element)
-        }
-    })
-    initialize()
   })
 })
 
