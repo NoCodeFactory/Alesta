@@ -47,7 +47,9 @@ let filtersButton = document.querySelectorAll('.sort-btn')
 
 filtersButton.forEach(element => {
   element.addEventListener('click', () => {
-    initialize()
+    setTimeout(() => {
+      initialize()
+    }, 2000);
   })
 })
 
