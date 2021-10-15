@@ -49,7 +49,7 @@ filtersButton.forEach(element => {
   element.addEventListener('click', () => {
     setTimeout(() => {
       initialize()
-    }, 2000);
+    }, 1000);
   })
 })
 
