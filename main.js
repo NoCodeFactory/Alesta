@@ -44,7 +44,8 @@ function createMarker(x, y, i) {
     map: map,
     icon: markerImg,
     position: new google.maps.LatLng(x,y),
-    title: cars[i].name
+    title: cars[i].name,
+    class: "markers"
   })
   marker._index = i;
   markers.push(marker);
