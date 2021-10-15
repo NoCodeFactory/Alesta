@@ -36,22 +36,22 @@ function initialize () {
       '<a class="vertical no-text-decoration" href="'+car.url+'"><div class="photo-map-marker" style="background:url('+car.photo+') center/cover no-repeat"></div><div class="vertical"><h6 class="main-header price small-margin-bottom">'+car.pricehr+'€'+'</h6></div></a>'
       )
       infoWindows.push(infoWindow)
-      if(cards[i].style.display != "none") {
+      if(cards[i].style.display != "noneX") {
         createMarker(car.lat, car.lng, i)
       }
     }
   fitToMarkers()
   }
   
-let filtersButton = document.querySelectorAll('.sort-btn')
+// let filtersButton = document.querySelectorAll('.sort-btn')
 
-filtersButton.forEach(element => {
-  element.addEventListener('click', () => {
-    setTimeout(() => {
-      initialize()
-    }, 1000);
-  })
-})
+// filtersButton.forEach(element => {
+//   element.addEventListener('click', () => {
+//     setTimeout(() => {
+//       initialize()
+//     }, 1000);
+//   })
+// })
 
 function createMarker(x, y, i) {
   marker = new google.maps.Marker({
