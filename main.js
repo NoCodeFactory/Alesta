@@ -16,6 +16,8 @@ var mapOptions = {
   mapTypeId: 'roadmap',
 }
 
+let cards = document.querySelector('.cards-grid-container').children
+
 function initialize () {
   markerImg = {
     url:'https://uploads-ssl.webflow.com/5fe9ffe033bab99a19322566/6119672b75eb54a2775810fc_607d4ef7b04e030b63d70b28_Group%201333%201.svg',
@@ -34,10 +36,20 @@ function initialize () {
       '<a class="vertical no-text-decoration" href="'+car.url+'"><div class="photo-map-marker" style="background:url('+car.photo+') center/cover no-repeat"></div><div class="vertical"><h6 class="main-header price small-margin-bottom">'+car.pricehr+'€'+'</h6></div></a>'
       )
       infoWindows.push(infoWindow)
-      createMarker(car.lat, car.lng, i)
+      if(cards[i].style.display != "none") {
+        createMarker(car.lat, car.lng, i)
+      }
     }
   fitToMarkers()
-}
+
+  
+let filtersButton = document.querySelectorAll('.sort-btn')
+
+filtersButton.forEach(element => {
+  element.addEventListener('click', () => {
+    initialize()
+  })
+})
 
 function createMarker(x, y, i) {
   marker = new google.maps.Marker({
@@ -45,7 +57,6 @@ function createMarker(x, y, i) {
     icon: markerImg,
     position: new google.maps.LatLng(x,y),
     title: cars[i].name,
-    class: "markers"
   })
   marker._index = i;
   markers.push(marker);
