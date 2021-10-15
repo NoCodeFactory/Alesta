@@ -41,7 +41,7 @@ function initialize () {
       }
     }
   fitToMarkers()
-
+  }
   
 let filtersButton = document.querySelectorAll('.sort-btn')
 
